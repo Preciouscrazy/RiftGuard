@@ -1,0 +1,47 @@
+[
+  {
+    "timestamp": "2026-10-27T18:00:00Z",
+    "version": "0.4.1-demo",
+    "event_type": "login_timeout",
+    "stage": "login",
+    "severity": "error",
+    "session_id": "synthetic-001",
+    "message": "Synthetic login timeout"
+  },
+  {
+    "timestamp": "2026-10-27T18:00:18Z",
+    "version": "0.4.1-demo",
+    "event_type": "recovered",
+    "stage": "login",
+    "severity": "info",
+    "session_id": "synthetic-001",
+    "message": "Synthetic login recovery"
+  },
+  {
+    "timestamp": "2026-10-27T18:02:00Z",
+    "version": "0.4.1-demo",
+    "event_type": "connection_lost",
+    "stage": "match",
+    "severity": "critical",
+    "session_id": "synthetic-002",
+    "message": "Synthetic connection interruption"
+  },
+  {
+    "timestamp": "2026-10-27T18:02:45Z",
+    "version": "0.4.1-demo",
+    "event_type": "connection_lost",
+    "stage": "match",
+    "severity": "critical",
+    "session_id": "synthetic-002",
+    "message": "Second synthetic interruption"
+  },
+  {
+    "timestamp": "2026-10-27T18:03:05Z",
+    "version": "0.4.1-demo",
+    "event_type": "recovered",
+    "stage": "match",
+    "severity": "info",
+    "session_id": "synthetic-002",
+    "message": "Synthetic recovery"
+  }
+]
