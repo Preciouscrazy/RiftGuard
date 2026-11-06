@@ -1,4 +1,4 @@
-from collections import Counter, defaultdict
+from collections import Counter
 from datetime import datetime
 
 REQUIRED = {"timestamp", "version", "event_type", "stage", "severity", "session_id", "message"}
@@ -28,29 +28,37 @@ def analyze_events(events):
         for key in ("version", "event_type", "stage", "session_id", "message"):
             if not isinstance(event[key], str) or not event[key].strip():
                 raise ValueError(f"{key} must be a non-empty string")
-        if event["severity"] not in SEVERITIES:
+        if not isinstance(event["severity"], str) or event["severity"] not in SEVERITIES:
             raise ValueError("Invalid severity: " + str(event["severity"]))
         row = dict(event); row["_time"] = parse_time(event["timestamp"]); parsed.append(row)
     parsed.sort(key=lambda row: row["_time"])
     event_counts, stage_counts, version_counts = Counter(), Counter(), Counter()
-    errors, recoveries = defaultdict(list), defaultdict(list)
+    pending_errors = {}
+    recovery_reports = []
+
     for row in parsed:
         event_counts[row["event_type"]] += 1
         stage_counts[row["stage"]] += 1
         version_counts[(row["version"], row["event_type"])] += 1
-        if row["severity"] in {"error", "critical"}: errors[row["session_id"]].append(row)
-        if row["event_type"] == "recovered": recoveries[row["session_id"]].append(row)
-    recovery_reports = []
-    for session, recovery_rows in recoveries.items():
-        for recovery in recovery_rows:
-            prior = [err for err in errors[session] if err["_time"] <= recovery["_time"]]
-            if prior:
-                origin = prior[-1]
+
+        session = row["session_id"]
+
+        if row["event_type"] == "recovered":
+            origin = pending_errors.pop(session, None)
+
+            if origin is not None:
                 recovery_reports.append({
-                    "session_id": session, "error_type": origin["event_type"],
+                    "session_id": session,
+                    "error_type": origin["event_type"],
                     "error_stage": origin["stage"],
-                    "recovery_seconds": round(max(0, (recovery["_time"] - origin["_time"]).total_seconds()), 2)
+                    "recovery_seconds": round(
+                        (row["_time"] - origin["_time"]).total_seconds(), 2
+                    ),
                 })
+
+        elif row["severity"] in {"error", "critical"}:
+            pending_errors[session] = row
+
     repeated = [{"version": v, "event_type": t, "count": n,
                  "signal": "Repeated event; inspect surrounding logs."}
                 for (v, t), n in sorted(version_counts.items()) if n >= 2 and t != "recovered"]
