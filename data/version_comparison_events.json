@@ -1,0 +1,128 @@
+[
+  {
+    "timestamp": "2026-10-27T18:00:00Z",
+    "version": "0.4.1-demo",
+    "event_type": "login_timeout",
+    "stage": "login",
+    "severity": "error",
+    "session_id": "synthetic-001",
+    "message": "Synthetic login timeout"
+  },
+  {
+    "timestamp": "2026-10-27T18:00:18Z",
+    "version": "0.4.1-demo",
+    "event_type": "recovered",
+    "stage": "login",
+    "severity": "info",
+    "session_id": "synthetic-001",
+    "message": "Synthetic login recovery"
+  },
+  {
+    "timestamp": "2026-10-27T18:02:00Z",
+    "version": "0.4.1-demo",
+    "event_type": "connection_lost",
+    "stage": "match",
+    "severity": "critical",
+    "session_id": "synthetic-002",
+    "message": "Synthetic connection interruption"
+  },
+  {
+    "timestamp": "2026-10-27T18:02:45Z",
+    "version": "0.4.1-demo",
+    "event_type": "connection_lost",
+    "stage": "match",
+    "severity": "critical",
+    "session_id": "synthetic-002",
+    "message": "Second synthetic interruption"
+  },
+  {
+    "timestamp": "2026-10-27T18:03:05Z",
+    "version": "0.4.1-demo",
+    "event_type": "recovered",
+    "stage": "match",
+    "severity": "info",
+    "session_id": "synthetic-002",
+    "message": "Synthetic recovery"
+  },
+  {
+    "timestamp": "2026-10-28T08:00:00Z",
+    "version": "0.4.2-demo",
+    "event_type": "startup_timeout",
+    "stage": "startup",
+    "severity": "error",
+    "session_id": "synthetic-003",
+    "message": "Synthetic startup timeout"
+  },
+  {
+    "timestamp": "2026-10-28T08:00:11Z",
+    "version": "0.4.2-demo",
+    "event_type": "recovered",
+    "stage": "startup",
+    "severity": "info",
+    "session_id": "synthetic-003",
+    "message": "Synthetic startup recovery"
+  },
+  {
+    "timestamp": "2026-10-28T08:02:00Z",
+    "version": "0.4.2-demo",
+    "event_type": "queue_delay",
+    "stage": "matchmaking",
+    "severity": "warning",
+    "session_id": "synthetic-004",
+    "message": "Synthetic queue delay"
+  },
+  {
+    "timestamp": "2026-10-28T08:03:00Z",
+    "version": "0.4.2-demo",
+    "event_type": "queue_delay",
+    "stage": "matchmaking",
+    "severity": "warning",
+    "session_id": "synthetic-004",
+    "message": "Second synthetic queue delay"
+  },
+  {
+    "timestamp": "2026-10-29T09:00:00Z",
+    "version": "0.5.0-demo",
+    "event_type": "connection_lost",
+    "stage": "match",
+    "severity": "error",
+    "session_id": "synthetic-005",
+    "message": "Synthetic connection loss"
+  },
+  {
+    "timestamp": "2026-10-29T09:00:05Z",
+    "version": "0.5.0-demo",
+    "event_type": "connection_lost",
+    "stage": "match",
+    "severity": "critical",
+    "session_id": "synthetic-005",
+    "message": "Second synthetic connection loss"
+  },
+  {
+    "timestamp": "2026-10-29T09:00:25Z",
+    "version": "0.5.0-demo",
+    "event_type": "recovered",
+    "stage": "match",
+    "severity": "info",
+    "session_id": "synthetic-005",
+    "message": "Synthetic match recovery"
+  },
+  {
+    "timestamp": "2026-10-29T09:01:00Z",
+    "version": "0.5.0-demo",
+    "event_type": "login_timeout",
+    "stage": "login",
+    "severity": "error",
+    "session_id": "synthetic-006",
+    "message": "Synthetic login timeout"
+  },
+  {
+    "timestamp": "2026-10-29T09:01:05Z",
+    "version": "0.5.0-demo",
+    "event_type": "recovered",
+    "stage": "login",
+    "severity": "info",
+    "session_id": "synthetic-006",
+    "message": "Synthetic login recovery"
+  }
+]
