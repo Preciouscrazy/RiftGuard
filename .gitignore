@@ -2,10 +2,10 @@ __pycache__/
 *.py[cod]
 .venv/
 .env
-
 .pytest_cache/
 *.egg-info/
 dist/
 build/
 riftguard-report.json
 sample-report.json
+reliability-dashboard.html

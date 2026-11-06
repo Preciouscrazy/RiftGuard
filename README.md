@@ -1,25 +1,33 @@
 # RiftGuard
-A Python reliability-event analyzer for **synthetic or authorized logs**. It summarizes event frequency, stages, repeated event patterns by version, and simple time-to-recovery estimates. This is an observability demo, not a root-cause oracle.
 
-Run:
-```bash
-python -m riftguard.cli data/sample_events.json
-python -m unittest discover -s tests -v
-```
-Python 3.10+; no third-party dependencies. Timestamps must be ISO 8601 with timezone (for example `Z`). Each event includes `timestamp`, `version`, `event_type`, `stage`, `severity`, `session_id`, and `message`.
+A Python reliability-event analyzer with a self-contained **offline reliability dashboard** for synthetic or user-authorized logs. It shows event frequency, recovery times, stages, repeated patterns, and trends by software version.
 
-A `recovered` event is matched to the latest preceding error/critical event in that session. Repeated events are signals for investigation, not proof of cause. Do not access private Riot services or other players' private telemetry.
+## Run and test
 
-## Development
+Requires Python 3.10+; standard library only at runtime.
 
-Run the unit tests before publishing changes:
+    python -m pip install -e .
+    python -m unittest discover -s tests -v
+    python -m riftguard.cli data/sample_events.json --output riftguard-report.json --dashboard reliability-dashboard.html
 
-```bash
-python -m unittest discover -s tests -v
-```
+Open the generated **reliability-dashboard.html** file in a browser, without any server or network connection.
 
-The GitHub Actions workflow runs the same test suite for pushes and pull requests.
+The original JSON-to-stdout behavior still works:
 
-## Scope and limitations
+    python -m riftguard.cli data/sample_events.json
 
-This project demonstrates documented educational analysis with sample data. Its results should not be treated as production monitoring, real-world player ratings, or access to any proprietary game service.
+## Dashboard metrics
+
+- Error / critical event counts by event type and software version
+- Event stage distribution and daily event-volume chart (UTC)
+- Matched recovery counts and average recovery duration
+- Repeated event signatures by version and type
+- Interactive version selector filtering the dashboard's analysis
+
+With the five fictional sample events, the dashboard reports **3 error/critical events, 2 recovered incidents, 19 seconds average recovery, and one repeated signature**.
+
+## Privacy and limitations
+
+The HTML embeds aggregate statistics, **not session IDs or event messages**. The original JSON report retains event details and should be reviewed before sharing. Version or event-type labels may still be proprietary. This offline educational prototype does not connect to any Riot Games service, identify root causes, or measure real-world failure rates. Recovery matching uses one pending error per session, and version filtering re-runs that heuristic on each subset.
+
+See docs/dashboard.md for methodology. GitHub Actions tests Python 3.10–3.12 and validates JSON/HTML generation.
