@@ -21,3 +21,5 @@ jobs:
         run: |
           python -m json.tool sample-report.json > /dev/null
           python -c "from pathlib import Path; h=Path('reliability-dashboard.html').read_text(); assert 'id=\"version\"' in h and 'id=\"timeline\"' in h and 'https://' not in h"
+      - name: Generate multi-version dashboard
+        run: python -m riftguard.cli data/version_comparison_events.json --output version-report.json --dashboard version-dashboard.html

@@ -113,5 +113,13 @@ class DashboardTests(unittest.TestCase):
         self.assertEqual(r.returncode, 1)
 
 
+    def test_multiple_version_sample_fixture(self):
+        version_events = json.loads((ROOT / "data" / "version_comparison_events.json").read_text(encoding="utf-8"))
+        data = build_dashboard_data(version_events)
+        self.assertEqual(data["overall"]["total_events"], 14)
+        self.assertEqual(data["versions"], ["0.4.1-demo", "0.4.2-demo", "0.5.0-demo"])
+        self.assertEqual(len(data["overall"]["timeline"]), 3)
+        self.assertEqual(data["by_version"]["0.4.2-demo"]["error_events"], 1)
+
 if __name__ == "__main__":
     unittest.main()

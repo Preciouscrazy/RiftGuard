@@ -9,3 +9,5 @@ build/
 riftguard-report.json
 sample-report.json
 reliability-dashboard.html
+version-report.json
+version-dashboard.html

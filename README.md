@@ -31,3 +31,11 @@ With the five fictional sample events, the dashboard reports **3 error/critical 
 The HTML embeds aggregate statistics, **not session IDs or event messages**. The original JSON report retains event details and should be reviewed before sharing. Version or event-type labels may still be proprietary. This offline educational prototype does not connect to any Riot Games service, identify root causes, or measure real-world failure rates. Recovery matching uses one pending error per session, and version filtering re-runs that heuristic on each subset.
 
 See docs/dashboard.md for methodology. GitHub Actions tests Python 3.10–3.12 and validates JSON/HTML generation.
+
+## Multi-version interactive demonstration
+
+To see the version filter and trend comparison respond to three distinct synthetic releases, run:
+
+    python -m riftguard.cli data/version_comparison_events.json --output version-report.json --dashboard version-dashboard.html
+
+Open version-dashboard.html in a browser and select 0.4.1-demo, 0.4.2-demo, or 0.5.0-demo. All data is invented for demonstration.

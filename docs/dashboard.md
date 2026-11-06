@@ -16,3 +16,7 @@ No server, external script, CDN, network access, or account integration is neede
 **Privacy:** the HTML embeds aggregate summaries only (not session IDs or message bodies). Version/event type labels remain visible. Review the original JSON report, which contains raw event details, before sharing.
 
 All sample inputs are synthetic. Error frequency here is not an operational error rate and does not establish cause. For production reliability analysis, validate incident models, telemetry coverage, safe data retention, and denominator quality.
+
+## Multi-version demo fixture
+
+Run the same CLI against data/version_comparison_events.json to generate version-dashboard.html. The 14 fictional events span three release labels and three UTC dates, illustrating the version selector and daily timeline. These examples are constructed, not observed production measurements.
