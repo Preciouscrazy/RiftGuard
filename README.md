@@ -1,5 +1,11 @@
 # RiftGuard
 
+**Python reliability analytics · Offline interactive dashboard · 19 verified automated tests**
+
+**[Read the engineering portfolio case study](docs/portfolio-case-study.md)** — architecture, design decisions, reproducible test evidence, and limitations.
+
+> Independent educational prototype using synthetic or user-authorized logs. Not affiliated with Riot Games and not a live monitoring service.
+
 A Python reliability-event analyzer with a self-contained **offline reliability dashboard** for synthetic or user-authorized logs. It shows event frequency, recovery times, stages, repeated patterns, and trends by software version.
 
 ## Run and test
