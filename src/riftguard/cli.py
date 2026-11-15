@@ -7,6 +7,14 @@ from .analyzer import analyze_events
 from .dashboard import save_dashboard
 
 
+def _same_file(left, right):
+    """Reject path, symlink and existing hard-link collisions."""
+    a, b = Path(left), Path(right)
+    return a.resolve() == b.resolve() or (
+        a.exists() and b.exists() and a.samefile(b)
+    )
+
+
 def main():
     parser = argparse.ArgumentParser(description="Analyze event logs and build a dashboard")
     parser.add_argument("input", help="Input JSON event array")
@@ -15,9 +23,9 @@ def main():
     args = parser.parse_args()
     try:
         targets = [v for v in (args.output, args.dashboard) if v]
-        if any(Path(p).resolve() == Path(args.input).resolve() for p in targets):
+        if any(_same_file(p, args.input) for p in targets):
             raise ValueError("Output must not overwrite input")
-        if len(targets) == 2 and Path(targets[0]).resolve() == Path(targets[1]).resolve():
+        if len(targets) == 2 and _same_file(targets[0], targets[1]):
             raise ValueError("JSON report and dashboard must have different paths")
         events = json.loads(Path(args.input).read_text(encoding="utf-8-sig"))
         report = analyze_events(events)
