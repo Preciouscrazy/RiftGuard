@@ -14,7 +14,7 @@ RiftGuard turns structured reliability-event logs into reproducible event summar
 | Recovery | Match a session's most recent outstanding error/critical event with the next recovery marker |
 | Interface | Self-contained offline HTML with charts and software-version filtering |
 | Reproducibility | Five-record baseline and 14-record multi-version fictional fixtures |
-| Validation | 19 unit/integration tests, locally passing on Windows/Python 3.15 |
+| Validation | 23 analyzer/dashboard/CLI tests in the upgraded suite; original 19 locally passed on Windows/Python 3.15 |
 | Continuous integration | GitHub Actions successful on Python 3.10, 3.11, and 3.12 |
 | Runtime | Python standard library; setuptools used for local package installation |
 
@@ -108,12 +108,12 @@ In the second example, select `All versions` or one of `0.4.1-demo`, `0.4.2-demo
 
 ## 5. Verification and evidence
 
-The repository was expanded from **three** original analyzer tests to **19** unit, regression, and dashboard/CLI tests.
+The repository was expanded from **three** original analyzer tests to **19** analyzer/dashboard tests and then **23** with four additional file-safety and CLI regressions. See [verified CI runs](../evidence/validation.md) for the current branch.
 
 - **Six core/regression tests:** counting and repeated signatures, recovery duration, timezone requirement, invalid severity, duplicate recovery suppression, and two separately recovered incidents.
 - **Thirteen dashboard tests:** expected fixture aggregates, consistency with the original analyzer, version filtering, UTC normalization, empty/no-recovery handling, invalid input, omission of session identifiers/message text and script escaping, HTML generation, backward-compatible CLI behavior, JSON+HTML generation, output-path guards, and three-version fixture validation.
 - **Local validation:** after the dashboard merge, Windows/Python 3.15 reported **19 tests passing in 0.422 seconds**, with a clean Git working tree.
-- **CI validation:** the [GitHub Actions workflow](../.github/workflows/tests.yml) successfully ran installation, tests, JSON report checks, and HTML generation on Python **3.10, 3.11, 3.12**.
+- **CI validation:** the [GitHub Actions workflow](../.github/workflows/tests.yml) runs installation, tests, JSON report checks, and HTML generation on **Windows and Ubuntu** with Python **3.10, 3.11, 3.12**. See [versioned validation](../evidence/validation.md) for successful run references.
 
 Passing tests support these specific claims; they do not demonstrate exhaustive correctness or production readiness. All provided records are synthetic.
 
@@ -121,7 +121,7 @@ Passing tests support these specific claims; they do not demonstrate exhaustive 
 
 The dashboard displays headline event metrics and panels for error types, stage distribution, daily UTC volume, recovery time by error category, global error counts by version, and repeated event signatures.
 
-**Visual reference:** Generate the offline HTML from the fictional sample, open it in a browser, select **All versions**, and capture a screenshot if needed. Screenshot guidance lives in [docs/assets](assets/README.md). The reproducible HTML is the source of truth; do not substitute imagery that appears to be live Riot Games telemetry.
+**Visual reference:** Generate the offline HTML from the fictional sample and open it in a browser. The reproducible HTML and fictional fixture are the source of truth; no representative browser screenshot has been committed. Do not imply access to live Riot Games systems.
 
 ## 7. Limitations and next steps
 

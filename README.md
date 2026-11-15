@@ -1,6 +1,6 @@
 # RiftGuard
 
-**Python reliability analytics · Offline interactive dashboard · 19 verified automated tests**
+**Python reliability analytics · Offline interactive dashboard · 23 automated tests (including file-safety regressions)**
 
 **[Read the engineering portfolio case study](docs/portfolio-case-study.md)** — architecture, design decisions, reproducible test evidence, and limitations.
 
@@ -36,7 +36,7 @@ With the five fictional sample events, the dashboard reports **3 error/critical 
 
 The HTML embeds aggregate statistics, **not session IDs or event messages**. The original JSON report retains event details and should be reviewed before sharing. Version or event-type labels may still be proprietary. This offline educational prototype does not connect to any Riot Games service, identify root causes, or measure real-world failure rates. Recovery matching uses one pending error per session, and version filtering re-runs that heuristic on each subset.
 
-See docs/dashboard.md for methodology. GitHub Actions tests Python 3.10–3.12 and validates JSON/HTML generation.
+See [dashboard methodology](docs/dashboard.md) and [cross-platform validation](evidence/validation.md). GitHub Actions tests Python 3.10–3.12 on Windows and Ubuntu and validates JSON/HTML generation. The CLI refuses output paths that refer to the source JSON or to one another, including hard-linked aliases; it does not coordinate concurrent writers.
 
 ## Multi-version interactive demonstration
 
