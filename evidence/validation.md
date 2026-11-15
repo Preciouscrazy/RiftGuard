@@ -24,9 +24,12 @@ The dashboard serializes aggregate visualizations but not raw session IDs or fre
 
 ## GitHub-hosted verification
 
+**Verified implementation commit:** [`6e49ab718f3c01c3d7da23ea73e06c07407f9d85`](https://github.com/Preciouscrazy/RiftGuard/commit/6e49ab718f3c01c3d7da23ea73e06c07407f9d85)  
+**Successful cross-platform run:** [GitHub Actions #43697252366](https://github.com/Preciouscrazy/RiftGuard/actions/runs/43697252366)
+
 | Environment | Python 3.10 | Python 3.11 | Python 3.12 |
 | --- | --- | --- | --- |
-| Ubuntu 24.04 | Pending | Pending | Pending |
-| Windows latest | Pending | Pending | Pending |
+| Ubuntu 24.04 | **PASS** | **PASS** | **PASS** |
+| Windows latest | **PASS** | **PASS** | **PASS** |
 
-**Not yet verified for this branch.** Record the exact hosted run results after the PR-head matrix finishes.
+This result verifies the linked implementation commit; a later documentation-only commit still requires its own passing CI workflow.
